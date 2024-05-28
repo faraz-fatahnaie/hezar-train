@@ -35,7 +35,7 @@ class BringerOfTheLight(OCRDataset):
         self.valid_indices = self._get_valid_indices()
 
     def _load(self, split=None):
-        return pd.read_csv(Path(self.config.path).joinpath(split).joinpath('image_data.csv'))
+        return pd.read_csv(Path(self.config.path).joinpath(split).joinpath('image_data.txt'))
 
     def _get_valid_indices(self):
         valid_indices = []
