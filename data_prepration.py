@@ -84,9 +84,9 @@ for entry in data:
 
 print("Image cropping, resizing, and saving completed.")
 
-csv_file_path = os.path.join(base_dir, 'processed', version, 'image_data.csv')
+csv_file_path = os.path.join(base_dir, 'processed', version, 'image_data.txt')
 
-with open(csv_file_path, 'w', newline='', encoding='utf-8-sig') as csvfile:
+with open(csv_file_path, 'w', newline='', encoding='utf-8') as csvfile:
     writer = csv.writer(csvfile)
     # Write header
     writer.writerow(['image_path', 'text'])
