@@ -1,7 +1,13 @@
+from __future__ import annotations
+
+import csv
+
+import pandas as pd
 from PIL import Image
 from tqdm import tqdm
 import numpy as np
 import torch
+from pathlib import Path
 
 
 # Calculate mean and std for the dataset
@@ -37,5 +43,20 @@ def gpu_check():
         print("CUDA is not available.")
 
 
+def combine_txt_files(list_paths: list, save_path: str | Path):
+    # Read the input files into pandas DataFrames
+    df1 = pd.read_csv(list_paths[0], encoding='utf-8')
+    df2 = pd.read_csv(list_paths[1], encoding='utf-8')
+
+    # Concatenate the DataFrames
+    aggregated_df = pd.concat([df1, df2], ignore_index=True)
+
+    # Save the aggregated DataFrame to a new text file
+    aggregated_df.to_csv(save_path, index=False, encoding='utf-8')
+
+
 if __name__ == "__main__":
     gpu_check()
+    # combine_txt_files(['C:\\Users\\Faraz\\PycharmProjects\\File\\data\\OCR\\data\\processed\\train\\image_data_v2.txt',
+    #                    'C:\\Users\\Faraz\\PycharmProjects\\File\\data\\OCR\\data\\processed\\train\\image_data_parsynth.txt'],
+    #                   save_path='C:\\Users\\Faraz\\PycharmProjects\\File\\data\\OCR\\data\\processed\\train\\image_data.txt')
